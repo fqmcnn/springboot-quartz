@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="testTables" targetRuntime="MyBatis3">
+
+        <!-- 指定生成的java文件的编码,没有直接生成到项目时中文可能会乱码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 分页相关
+        <plugin type="org.mybatis.config.plugins.RowBoundsPlugin" />
+        &lt;!&ndash; 带上序列化接口 &ndash;&gt;
+        <plugin type="org.mybatis.config.plugins.SerializablePlugin" />
+        &lt;!&ndash; 自定义的注释生成插件&ndash;&gt;
+        <plugin type="com.chrm.mybatis.config.plugins.CommentPlugin">
+            &lt;!&ndash; 抑制警告 &ndash;&gt;
+            <property name="suppressTypeWarnings" value="true" />
+            &lt;!&ndash; 是否去除自动生成的注释 true：是 ： false:否 &ndash;&gt;
+            <property name="suppressAllComments" value="false" />
+            &lt;!&ndash; 是否生成注释代时间戳&ndash;&gt;
+            <property name="suppressDate" value="true" />
+        </plugin>-->
+        <!--<plugin type="com.gfa4j.mybatis.config.plugins.ModelCommentPlugin" />-->
+
+        <!--数据库链接URL，用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/quartz" userId="root" password="root">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <!--生成之后的实体中number类型转换成JAVA类型还是会被转换为BigDecimal类型 -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 生成模型的包名和位置 -->
+        <javaModelGenerator targetPackage="com.mopin.live.quartz.model.schedule"
+                            targetProject="target">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成映射文件的包名和位置 -->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="target">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 生成DAO的包名和位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.mopin.live.quartz.dao" implementationPackage="com.mopin.live.quartz.dao"
+                             targetProject="target">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+
+        <table tableName="schedule_job" domainObjectName="ScheduleJob"></table>
+    </context>
+</generatorConfiguration>
